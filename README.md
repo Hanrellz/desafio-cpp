@@ -1,3 +1,18 @@
+# Respostas de Perguntas
+
+**3) Informações sobre quais bibliotecas e versões foram utilizadas;**
+
+Não foi usada nenhuma biblioteca externa no test para facilitar a compreenção.
+
+**4) Qual o tempo aproximado gasto no desenvolvimento do software;**
+
+Menos de 8 horas, a maior parte foi gasta tentando achar alguma documentação atual.
+
+**5) E por último, não menos importante, quais a dificuldades que você enfrentou
+no desafio.**
+
+A biblioteca "zmqpp" não possui documentação, exemplos e não é atualizada a mais de ano.
+
 # Desafio C++
 
 Esse desafio é a parte prática, onde podemos analisar seu nível técnico, organização de código e arquitetura da solução.
