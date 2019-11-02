@@ -5,9 +5,7 @@
 
 #include <zmqpp/zmqpp.hpp>
 #include <Poco/Util/PropertyFileConfiguration.h>
-#include "Poco/DateTime.h"
 #include "Poco/Timestamp.h"
-#include "Poco/Timespan.h"
 #include "Poco/DateTimeFormatter.h"
 #include "Poco/DateTimeFormat.h"
 #include "Poco/Random.h"
@@ -63,6 +61,8 @@ int main() {
 
     // Sleep for one second
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+    id++;
   }
 
   // Unreachable, but for good measure
