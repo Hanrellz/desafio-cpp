@@ -12,6 +12,7 @@ int main() {
   AutoPtr<PropertyFileConfiguration> pConf;
   pConf = new PropertyFileConfiguration("../MODULO/resources/config/MODULO.properties");
   std::string port = pConf->getString("port");
+  std::string topic = pConf->getString("topic");
 
   const string endpoint = "tcp://127.0.0.1:" + port;
 
@@ -21,7 +22,7 @@ int main() {
   zmqpp::socket socket(context, type);
 
   // Subscribe to the default channel
-  socket.subscribe("");
+  socket.subscribe(topic);
 
   // Connect to the publisher
   cout << "Connecting to " << endpoint << "..." << endl;

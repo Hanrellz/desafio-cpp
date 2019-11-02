@@ -12,6 +12,7 @@ int main() {
   AutoPtr<PropertyFileConfiguration> pConf;
   pConf = new PropertyFileConfiguration("../MODULO/resources/config/MODULO.properties");
   std::string port = pConf->getString("port");
+  std::string topic = pConf->getString("topic");
 
   const string endpoint = "tcp://127.0.0.1:" + port;
 
@@ -29,7 +30,7 @@ int main() {
 
     // Create a message and feed data into it
     zmqpp::message message;
-    message << text;
+    message << topic << text;
 
     // Send it off to any subscribers
     socket.send(message);
