@@ -30,4 +30,8 @@
 *.exe
 *.out
 *.app
+src/server
+src/client
 
+# App packaging
+*.dSYM
