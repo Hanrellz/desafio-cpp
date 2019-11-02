@@ -36,4 +36,4 @@ subscribe/subscribe
 # App packaging
 *.dSYM
 
-.json
+*.json
