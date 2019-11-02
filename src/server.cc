@@ -1,11 +1,19 @@
-#include <zmqpp/zmqpp.hpp>
 #include <string>
 #include <iostream>
 
-using namespace std;
+#include <zmqpp/zmqpp.hpp>
+#include <Poco/Util/PropertyFileConfiguration.h>
 
-int main(int argc, char *argv[]) {
-  const string endpoint = "tcp://*:4242";
+using namespace std;
+using Poco::AutoPtr;
+using Poco::Util::PropertyFileConfiguration;
+
+int main() {
+  AutoPtr<PropertyFileConfiguration> pConf;
+  pConf = new PropertyFileConfiguration("../MODULO/resources/config/MODULO.properties");
+  std::string port = pConf->getString("port");
+
+  const string endpoint = "tcp://*:" + port;
 
   // initialize the 0MQ context
   zmqpp::context context;

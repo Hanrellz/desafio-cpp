@@ -1,7 +1,7 @@
 CPP			    = g++
 RM			    = rm -f
 CPPFLAGS		= -Wall -Wextra -pedantic -I. -O2 -std=c++11 -g
-LDFLAGS			= -lpthread -lzmqpp -lzmq -lsodium
+LDFLAGS			= -lpthread -lzmqpp -lzmq -lsodium -lPocoUtil
 SOURCES			= $(wildcard *.cc)
 TARGETS			= $(SOURCES:%.cc=%)
 
