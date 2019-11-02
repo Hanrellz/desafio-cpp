@@ -13,26 +13,29 @@ int main() {
   pConf = new PropertyFileConfiguration("../MODULO/resources/config/MODULO.properties");
   std::string port = pConf->getString("port");
 
-  const string endpoint = "tcp://localhost:" + port;
+  const string endpoint = "tcp://127.0.0.1:" + port;
 
-  // initialize the 0MQ context
+  // Create a publisher socket
   zmqpp::context context;
-
-  // generate a push socket
-  zmqpp::socket_type type = zmqpp::socket_type::push;
+  zmqpp::socket_type type = zmqpp::socket_type::publish;
   zmqpp::socket socket (context, type);
 
-  // open the connection
-  cout << "Opening connection to " << endpoint << "..." << endl;
-  socket.connect(endpoint);
+  // Open the connection
+  cout << "Binding to " << endpoint << "..." << endl;
+  socket.bind(endpoint);
 
-  // send a message
-  cout << "Sending text and a number..." << endl;
-  zmqpp::message message;
-  // compose a message from a string and a number
-  message << "Hello World!" << 42;
-  socket.send(message);
-  
-  cout << "Sent message." << endl;
-  cout << "Finished." << endl;
+  while(true) {
+    string text = "Hello at ";
+
+    // Create a message and feed data into it
+    zmqpp::message message;
+    message << text;
+
+    // Send it off to any subscribers
+    socket.send(message);
+  }
+
+  // Unreachable, but for good measure
+  socket.disconnect(endpoint);
+  return 0;
 }

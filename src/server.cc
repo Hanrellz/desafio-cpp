@@ -13,28 +13,34 @@ int main() {
   pConf = new PropertyFileConfiguration("../MODULO/resources/config/MODULO.properties");
   std::string port = pConf->getString("port");
 
-  const string endpoint = "tcp://*:" + port;
+  const string endpoint = "tcp://127.0.0.1:" + port;
 
-  // initialize the 0MQ context
+  // Create a subscriber socket
   zmqpp::context context;
+  zmqpp::socket_type type = zmqpp::socket_type::subscribe;
+  zmqpp::socket socket(context, type);
 
-  // generate a pull socket
-  zmqpp::socket_type type = zmqpp::socket_type::pull;
-  zmqpp::socket socket (context, type);
+  // Subscribe to the default channel
+  socket.subscribe("");
 
-  // bind to the socket
-  cout << "Binding to " << endpoint << "..." << endl;
-  socket.bind(endpoint);
+  // Connect to the publisher
+  cout << "Connecting to " << endpoint << "..." << endl;
+  socket.connect(endpoint);
 
-  // receive the message
-  cout << "Receiving message..." << endl;
-  zmqpp::message message;
-  // decompose the message 
-  socket.receive(message);
-  string text;
-  int number;
-  message >> text >> number;
+  while(true) {
 
-  cout << "Received text:\"" << text << "\" and a number: " << number << endl;
-  cout << "Finished." << endl;
+    // Receive (blocking call)
+    zmqpp::message message;
+    socket.receive(message);
+
+    // Read as a string
+    string text;
+    message >> text;
+
+    cout << "[RECV]: \"" << text << "\"" << endl;
+  }
+
+  // Unreachable, but for good measure
+  socket.disconnect(endpoint);
+  return 0;
 }
