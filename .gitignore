@@ -30,8 +30,10 @@
 *.exe
 *.out
 *.app
-src/publish
-src/subscribe
+publish/publish
+subscribe/subscribe
 
 # App packaging
 *.dSYM
+
+.json

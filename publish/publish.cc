@@ -10,7 +10,7 @@
 #include <Poco/Util/PropertyFileConfiguration.h>
 #include <zmqpp/zmqpp.hpp>
 
-#include "json.hpp"
+#include "../shared/json.hpp"
 
 using namespace std;
 using Poco::AutoPtr;
@@ -23,7 +23,7 @@ using json = nlohmann::json;
 int main() {
   // Read properties file
   AutoPtr<PropertyFileConfiguration> pConf;
-  pConf = new PropertyFileConfiguration("../MODULO/resources/config/MODULO.properties");
+  pConf = new PropertyFileConfiguration("resources/config/publish.properties");
   std::string port = pConf->getString("port");
   std::string topic = pConf->getString("topic");
 
