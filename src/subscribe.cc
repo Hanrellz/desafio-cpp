@@ -3,6 +3,7 @@
 
 #include <zmqpp/zmqpp.hpp>
 #include <Poco/Util/PropertyFileConfiguration.h>
+#include "json.hpp"
 
 using namespace std;
 using Poco::AutoPtr;
@@ -11,8 +12,8 @@ using Poco::Util::PropertyFileConfiguration;
 int main() {
   AutoPtr<PropertyFileConfiguration> pConf;
   pConf = new PropertyFileConfiguration("../MODULO/resources/config/MODULO.properties");
-  std::string port = pConf->getString("port");
-  std::string topic = pConf->getString("topic");
+  string port = pConf->getString("port");
+  string topic = pConf->getString("topic");
 
   const string endpoint = "tcp://127.0.0.1:" + port;
 
@@ -28,15 +29,14 @@ int main() {
   cout << "Connecting to " << endpoint << "..." << endl;
   socket.connect(endpoint);
 
+  string text;
+
   while(true) {
 
-    // Receive (blocking call)
     zmqpp::message message;
     socket.receive(message);
 
-    // Read as a string
-    string text;
-    message >> text;
+    message >> topic >> text;
 
     cout << "[RECV]: \"" << text << "\"" << endl;
   }
