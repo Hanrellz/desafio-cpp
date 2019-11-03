@@ -9,22 +9,17 @@
 
 #include "../shared/json.hpp"
 
-using namespace std;
-using Poco::AutoPtr;
-using Poco::Util::PropertyFileConfiguration;
-using json = nlohmann::json;
-
 int main() {
-  AutoPtr<PropertyFileConfiguration> pConf;
-  pConf = new PropertyFileConfiguration("resources/config/subscribe.properties");
-  string port = pConf->getString("port");
-  string topic = pConf->getString("topic");
+  Poco::AutoPtr<Poco::Util::PropertyFileConfiguration> pConf;
+  pConf = new Poco::Util::PropertyFileConfiguration("resources/config/subscribe.properties");
+  std::string port = pConf->getString("port");
+  std::string topic = pConf->getString("topic");
 
-  const string endpoint = "tcp://127.0.0.1:" + port;
+  const std::string endpoint = "tcp://127.0.0.1:" + port;
 
-  string content;
+  std::string content;
 
-  ofstream myfile;
+  std::ofstream myfile;
 
   zmqpp::context context;
   zmqpp::socket_type type = zmqpp::socket_type::subscribe;
@@ -32,7 +27,7 @@ int main() {
 
   socket.subscribe(topic);
 
-  cout << "Connecting to " << endpoint << "..." << endl;
+  std::cout << "Connecting to " << endpoint << "..." << std::endl;
   socket.connect(endpoint);
 
 
@@ -42,12 +37,12 @@ int main() {
 
     message >> topic >> content;
 
-    auto content_json = json::parse(content);
+    auto content_json = nlohmann::json::parse(content);
 
     auto timestamp = content_json["timestamp"].dump();
     timestamp = timestamp.substr(1, timestamp.size() - 2);
 
-    cout << "Received at: " << timestamp << endl;
+    std::cout << "Received at: " << timestamp << std::endl;
 
     std::ostringstream filename;
     filename << timestamp << ".json";
