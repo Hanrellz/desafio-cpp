@@ -34,7 +34,7 @@ As chaves disponíveis são:
 - [nlohmann/json](https://github.com/nlohmann/json) _3.7.0_
     
 ## Tempo gasto
-Sem contar o tempo de instalação das bibliotecas, o tempo gasto foi de aproximadamente 5 horas.
+Sem contar o tempo de instalação das bibliotecas, o tempo gasto foi de aproximadamente 6 horas.
 
 ## Dificuldades
 As principais dificuldades estão relacionadas às documentações do **Poco**, do **ZeroMQ** e do **zmqpp**.
