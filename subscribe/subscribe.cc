@@ -15,7 +15,6 @@ using Poco::Util::PropertyFileConfiguration;
 using json = nlohmann::json;
 
 int main() {
-  // Read properties file
   AutoPtr<PropertyFileConfiguration> pConf;
   pConf = new PropertyFileConfiguration("resources/config/subscribe.properties");
   string port = pConf->getString("port");
@@ -27,15 +26,12 @@ int main() {
 
   ofstream myfile;
 
-  // Create a subscriber socket
   zmqpp::context context;
   zmqpp::socket_type type = zmqpp::socket_type::subscribe;
   zmqpp::socket socket(context, type);
 
-  // Subscribe to the default channel
   socket.subscribe(topic);
 
-  // Connect to the publisher
   cout << "Connecting to " << endpoint << "..." << endl;
   socket.connect(endpoint);
 
@@ -48,23 +44,19 @@ int main() {
 
     auto content_json = json::parse(content);
 
-    // Get json timestamp and convert to string without double quotes
     auto timestamp = content_json["timestamp"].dump();
     timestamp = timestamp.substr(1, timestamp.size() - 2);
 
     cout << "Received at: " << timestamp << endl;
 
-    // Format file name
     std::ostringstream filename;
     filename << timestamp << ".json";
 
-    // Create and save file
     myfile.open(filename.str());
     myfile << std::setw(4) << content_json;
     myfile.close();
   }
 
-  // Unreachable, but for good measure
   socket.disconnect(endpoint);
   return 0;
 }

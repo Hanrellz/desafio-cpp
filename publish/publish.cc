@@ -21,7 +21,6 @@ using Poco::Random;
 using json = nlohmann::json;
 
 int main() {
-  // Read properties file
   AutoPtr<PropertyFileConfiguration> pConf;
   pConf = new PropertyFileConfiguration("resources/config/publish.properties");
   std::string port = pConf->getString("port");
@@ -35,12 +34,10 @@ int main() {
   unsigned int id = 0;
   json text;
 
-  // Create a publisher socket
   zmqpp::context context;
   zmqpp::socket_type type = zmqpp::socket_type::publish;
   zmqpp::socket socket (context, type);
 
-  // Open the connection
   cout << "Binding to " << endpoint << "..." << endl;
   socket.bind(endpoint);
 
@@ -53,20 +50,16 @@ int main() {
     text["velocidade"] = velocity;
     text["timestamp"] = timestamp;
 
-    // Create a message and feed data into it
     zmqpp::message message;
     message << topic << text.dump();
 
-    // Send it off to any subscribers
     socket.send(message);
 
-    // Sleep for one second
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
     id++;
   }
 
-  // Unreachable, but for good measure
   socket.disconnect(endpoint);
   return 0;
 }
