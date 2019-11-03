@@ -2,21 +2,24 @@
 Solução do desafio: [Hanrellz/desafio-cpp](https://github.com/Hanrellz/desafio-cpp).
 
 ## Uso
+```
+cd desafio-cpp
+make
+```
+
 ### Subscribe
 ```
 cd desafio-cpp/subscribe
-make
 ./subscribe
 ```
 
 ### Publish
 ```
 cd desafio-cpp/publish
-make
 ./publish
 ```
 
-### Configuração
+## Configuração
 Os arquivos de configuração se encontram em `desafio-cpp/MODULE/resources/config/MODULE.properties`.
 
 As chaves disponíveis são:
