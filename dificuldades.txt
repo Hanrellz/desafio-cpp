@@ -3,3 +3,5 @@
 *Fazer funcionar os exemplos server/client da lib zeromq;
 *Utilizar a biblioteca Poco foi um desafio;
 *Um pouco de dificuldade com compilação no linux, pois as compilações que já fiz eram sobre qt na interface de desenvolvimento.
+
+Foram gastas aproximadamente 14 horas, sendo destas mais da metade gasta em pesquisa, devido ao não conhecimento das bibliotecas.
