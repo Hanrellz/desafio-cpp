@@ -1,0 +1,8 @@
+https://github.com/zeromq/zmqpp
+https://gist.github.com/hmartiro/df1eb214f77f549b3691
+https://www.nongnu.org/lwip/2_0_x/group__dhcp4.html#ga583eb8d58f5e96b7dea717948578a947
+
+https://stackoverflow.com/questions/42740401/poconettcpserver-simple-server-with-100-cpu-usage
+https://pocoproject.org/docs/00100-GuidedTour.html~
+https://github.com/pocoproject/sandbox/blob/master/JSON/testsuite/src/JSONTest.cpp
+https://github.com/brakmic/ZeroMQ
