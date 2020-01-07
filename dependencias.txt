@@ -1,8 +1,0 @@
-libtool
-build-essential
-g++
-pkg-config
-
-https://pocoproject.org/download.html
-libssl-dev
-libpoco-dev

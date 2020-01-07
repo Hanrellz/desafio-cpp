@@ -1,2 +1,0 @@
-libzmq -> 5.2.3
-libpoco -> 1.9.0
